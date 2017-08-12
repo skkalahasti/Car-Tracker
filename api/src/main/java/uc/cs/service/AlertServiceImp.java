@@ -30,7 +30,7 @@ public class AlertServiceImp implements AlertService {
 
     public List<Alert> findByPriority(String priority) {
 
-        if(!(priority.equals("HIGH")||priority.equals("MEDIUM")||priority.equals("LOW")))
+        if(!(priority.equalsIgnoreCase("HIGH")||priority.equalsIgnoreCase("MEDIUM")||priority.equalsIgnoreCase("LOW")))
             throw new BadRequestException("Please pick a value from High, Medium and Low");
 
         List<Alert> alerts=arepository.findByPriority(priority);
