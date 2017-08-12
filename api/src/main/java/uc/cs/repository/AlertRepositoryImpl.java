@@ -37,7 +37,7 @@ public class AlertRepositoryImpl implements AlertRepository {
     }
 
     public List<Alert> findByVin(String vin) {
-        TypedQuery<Alert> query = entityManager.createNamedQuery("Alert.findByvin",Alert.class);
+        TypedQuery<Alert> query = entityManager.createNamedQuery("Alert.findByVin",Alert.class);
 
         query.setParameter("paramvin", vin);
         List<Alert> resultList = query.getResultList();
