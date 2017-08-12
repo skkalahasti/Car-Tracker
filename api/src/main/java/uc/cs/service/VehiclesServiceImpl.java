@@ -3,6 +3,8 @@ package uc.cs.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import uc.cs.exception.BadRequestException;
+import uc.cs.exception.ResourceNotFoundException;
 import uc.cs.repository.VehicleRepository;
 import uc.cs.entity.Vehicles;
 
@@ -38,6 +40,16 @@ public class VehiclesServiceImpl implements VehiclesService {
         }
 
         return vehicles;
+    }
+
+    @Transactional
+    public Vehicles delete(String vin) {
+    Vehicles vehicles;
+    vehicles=vrepository.delete(vin);
+        if(vehicles==null)
+            throw new ResourceNotFoundException("vehicle not found");
+        else
+            return vrepository.delete(null);
     }
 
 }

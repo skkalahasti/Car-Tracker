@@ -13,4 +13,6 @@ public interface VehicleRepository {
     public Vehicles create_Vehicle(Vehicles vehicles);
 
     public Vehicles find(String Vin);
+
+    public Vehicles delete(String Vin);
 }

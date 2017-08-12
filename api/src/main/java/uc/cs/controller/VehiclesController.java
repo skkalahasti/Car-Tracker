@@ -28,4 +28,7 @@ public class VehiclesController {
     public List<Vehicles> create(@RequestBody List<Vehicles> vehicles) {
         return service.createVehicles(vehicles);
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
+    public Vehicles delete(@PathVariable("id") String vin){ return service.delete(vin); }
 }

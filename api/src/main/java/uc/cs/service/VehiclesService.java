@@ -11,4 +11,6 @@ public interface VehiclesService {
 
     List<Vehicles> createVehicles(List<Vehicles> vehicles);
 
+    Vehicles delete(String vin);
+
 }

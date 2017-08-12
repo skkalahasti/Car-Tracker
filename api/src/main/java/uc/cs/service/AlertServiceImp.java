@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uc.cs.entity.Alert;
+import uc.cs.exception.BadRequestException;
 import uc.cs.repository.AlertRepository;
 
 import java.util.List;
@@ -28,6 +29,9 @@ public class AlertServiceImp implements AlertService {
     }
 
     public List<Alert> findByPriority(String priority) {
+
+        if(!(priority.equals("HIGH")||priority.equals("MEDIUM")||priority.equals("LOW")))
+            throw new BadRequestException("Please pick a value from High, Medium and Low");
 
         List<Alert> alerts=arepository.findByPriority(priority);
 
