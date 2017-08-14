@@ -54,6 +54,8 @@ public class AlertRepositoryImpl implements AlertRepository {
 
         Alert alert=new Alert();
 
+        boolean alert_defined=false;
+
         TypedQuery<Vehicles> query = entityManager.createNamedQuery("Vehicles.checkForAlerts",Vehicles.class);
 
         query.setParameter("paramalertvin", readings.getVin());
@@ -68,6 +70,7 @@ public class AlertRepositoryImpl implements AlertRepository {
             if(readings.getEngineRpm() > vehicles.getRedlineRpm()) {
                 alert.setPriority("HIGH");
                 alert.setType("RPM");
+                alert_defined=true;
                 String Category="RPM";
                 // Sends an email for a High Alert.
        //         ComposeEmail.SendEmail(vehicles.getVin(),Category);
@@ -75,6 +78,7 @@ public class AlertRepositoryImpl implements AlertRepository {
             else if(readings.getFuelVolume() < (0.1 * vehicles.getMaxFuelVolume())) {  // Rule 2
                 alert.setPriority("MEDIUM");
                 alert.setType("Fuel");
+                alert_defined=true;
             }
             else if(readings.getTires().getFrontLeft() < 32 || readings.getTires().getFrontLeft() > 36 || // Rule 3
             readings.getTires().getFrontRight() < 32 || readings.getTires().getFrontRight() > 36 ||
@@ -82,20 +86,24 @@ public class AlertRepositoryImpl implements AlertRepository {
             readings.getTires().getRearRight() < 32 || readings.getTires().getRearRight() > 36 ){
                 alert.setPriority("LOW");
                 alert.setType("TirePressure");
+                alert_defined=true;
             }
             else if(readings.isEngineCoolantLow()==true) {
             alert.setPriority("LOW");
             alert.setType("EngineCoolantLow");
+                alert_defined=true;
             }
             else if( readings.isCheckEngineLightOn()==true) {
                 alert.setPriority("LOW");
                 alert.setType("EngineLight");
+                alert_defined=true;
             }
 
-            alert.setTimestamp(readings.getTimestamp());
-            alert.setVin(readings.getVin());
-
-            entityManager.persist(alert);
+            if(alert_defined) {
+                alert.setTimestamp(readings.getTimestamp());
+                alert.setVin(readings.getVin());
+                entityManager.persist(alert);
+            }
 
         }
 
