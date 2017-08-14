@@ -10,7 +10,7 @@ import uc.cs.repository.AlertRepository;
 import java.util.List;
 
 @Service
-public class AlertServiceImp implements AlertService {
+public class AlertServiceImpl implements AlertService {
 
     @Autowired
     AlertRepository arepository;

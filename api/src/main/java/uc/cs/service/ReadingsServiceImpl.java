@@ -9,7 +9,7 @@ import uc.cs.repository.ReadingsRepository;
 import java.util.*;
 
 @Service
-public class ReadingsServiceImp implements ReadingsService {
+public class ReadingsServiceImpl implements ReadingsService {
 
     @Autowired
     ReadingsRepository rrepository;

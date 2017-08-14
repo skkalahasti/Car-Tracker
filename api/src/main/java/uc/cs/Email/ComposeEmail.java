@@ -1,4 +1,4 @@
-package uc.cs;
+package uc.cs.Email;
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -14,8 +14,8 @@ public class ComposeEmail {
     public static void SendEmail(String vin,String Category){
 
         // To be Updated
-        final String username = "User_Name";
-        final String password = "Password";
+        final String username = "";
+        final String password = "";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

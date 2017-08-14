@@ -1,7 +1,6 @@
 package uc.cs.repository;
 
 import org.springframework.stereotype.Repository;
-import uc.cs.ComposeEmail;
 import uc.cs.entity.Alert;
 import uc.cs.entity.Readings;
 import uc.cs.entity.Vehicles;
@@ -9,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import uc.cs.Email.ComposeEmail;
 
 @Repository
 public class AlertRepositoryImpl implements AlertRepository {
@@ -73,7 +73,8 @@ public class AlertRepositoryImpl implements AlertRepository {
                 alert_defined=true;
                 String Category="RPM";
                 // Sends an email for a High Alert.
-       //         ComposeEmail.SendEmail(vehicles.getVin(),Category);
+                // Uncomment the below line and then provide details of gmail user id, password, From Email and To Email
+                // ComposeEmail.SendEmail(vehicles.getVin(),Category);
             }
             else if(readings.getFuelVolume() < (0.1 * vehicles.getMaxFuelVolume())) {  // Rule 2
                 alert.setPriority("MEDIUM");
@@ -88,18 +89,18 @@ public class AlertRepositoryImpl implements AlertRepository {
                 alert.setType("TirePressure");
                 alert_defined=true;
             }
-            else if(readings.isEngineCoolantLow()==true) {
+            else if(readings.isEngineCoolantLow()==true) { // Rule 4
             alert.setPriority("LOW");
             alert.setType("EngineCoolantLow");
                 alert_defined=true;
             }
-            else if( readings.isCheckEngineLightOn()==true) {
+            else if( readings.isCheckEngineLightOn()==true) { //Rule 5
                 alert.setPriority("LOW");
                 alert.setType("EngineLight");
                 alert_defined=true;
             }
 
-            if(alert_defined) {
+            if(alert_defined) {   // Alert will be created only if it passes an alert
                 alert.setTimestamp(readings.getTimestamp());
                 alert.setVin(readings.getVin());
                 entityManager.persist(alert);
