@@ -30,5 +30,5 @@ public class VehiclesController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
-    public Vehicles delete(@PathVariable("id") String vin){ return service.delete(vin); }
+    public Vehicles delete(@PathVariable("vin") String vin){ return service.delete(vin); }
 }

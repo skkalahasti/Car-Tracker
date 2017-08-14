@@ -1,6 +1,7 @@
 package uc.cs.repository;
 
 import org.springframework.stereotype.Repository;
+import uc.cs.ComposeEmail;
 import uc.cs.entity.Alert;
 import uc.cs.entity.Readings;
 import uc.cs.entity.Vehicles;
@@ -67,6 +68,9 @@ public class AlertRepositoryImpl implements AlertRepository {
             if(readings.getEngineRpm() > vehicles.getRedlineRpm()) {
                 alert.setPriority("HIGH");
                 alert.setType("RPM");
+                String Category="RPM";
+                // Sends an email for a High Alert.
+       //         ComposeEmail.SendEmail(vehicles.getVin(),Category);
             }
             else if(readings.getFuelVolume() < (0.1 * vehicles.getMaxFuelVolume())) {  // Rule 2
                 alert.setPriority("MEDIUM");

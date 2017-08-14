@@ -45,12 +45,8 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
     }
 
-    public Vehicles delete(String Vin) {
+    public void delete(Vehicles vehicles) {
 
-        TypedQuery<Vehicles> query = entityManager.createNamedQuery("Vehicles.findByvin",Vehicles.class);
-        query.setParameter("paramvin", Vin);
-        List<Vehicles> resultList = query.getResultList();
-        entityManager.remove(resultList.get(0));
-        return resultList.get(0);
+        entityManager.remove(vehicles);
     }
 }

@@ -14,5 +14,5 @@ public interface VehicleRepository {
 
     public Vehicles find(String Vin);
 
-    public Vehicles delete(String Vin);
+    public void delete(Vehicles vehicles);
 }
