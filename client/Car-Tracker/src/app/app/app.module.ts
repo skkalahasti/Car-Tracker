@@ -6,8 +6,9 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { HttpModule } from "@angular/http";
 import { RouterModule, Routes } from "@angular/router";
-import { VehiclesComponent } from './vehicles/vehicles.component';
-import {VehiclesService} from "./vehicles/vehicles-service.service";
+import { VehiclesComponent } from '../vehicles/vehicles.component';
+import {VehiclesService} from "../vehicles/vehicles-service.service";
+import { AlertsComponent } from '../alerts/alerts.component';
 
 const appRoutes: Routes = [
   {path: 'vehicles', component: VehiclesComponent},
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    VehiclesComponent
+    VehiclesComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
