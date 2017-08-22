@@ -15,16 +15,20 @@ export class AlertsComponent implements OnInit {
 
   constructor(public alertService: AlertsService) { }
 
+  fty(yu)
+  {
+    alert(yu);
+  }
   ngOnInit(): void {
     this.duration=[1,2,4,12,24];
     this.duration_time=2;
-    this.getalerts();
+    this.getalerts(this.duration_time);
   }
 
-  getalerts(){
+  getalerts(dur_time){
 
-
-    this.highalerts = this.alertService.findHighAlerts(this.duration_time).subscribe(
+console.log(dur_time)
+    this.highalerts = this.alertService.findHighAlerts(dur_time).subscribe(
       alerts => this.highalerts = alerts,
       error => console.log(error));
 

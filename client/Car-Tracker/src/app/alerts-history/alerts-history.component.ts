@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AlertsHistoryService} from "./alerts-history.service";
 
 @Component({
   selector: 'app-alerts-history',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertsHistoryComponent implements OnInit {
 
-  constructor() { }
+  alertshistory
+
+  constructor(private alertsHistoryService: AlertsHistoryService) { }
 
   ngOnInit() {
+
+    this.gethistoricalalerts(this.alertshistory);
+
+  }
+
+  gethistoricalalerts(vinnumber){
+
+    this.alertshistory = this.alertsHistoryService.findAlertsHistory(vinnumber).subscribe(
+      alerts => this.alertshistory = alerts,
+      error => console.log(error));
+
   }
 
 }

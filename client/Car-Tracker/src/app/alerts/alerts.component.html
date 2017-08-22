@@ -1,6 +1,6 @@
 <div>
-<select [(ngModel)]="duration_time" class="form-control" (click)=getalerts()>
-  <option *ngFor="let dur of duration" [value]="duration_time">{{ dur }}</option>
+<select #selectop class="form-control" (change)=getalerts(selectop.value)>
+  <option *ngFor="let dur of duration">{{ dur }}</option>
 </select>
 </div>
 

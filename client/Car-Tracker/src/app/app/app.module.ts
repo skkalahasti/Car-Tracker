@@ -9,11 +9,13 @@ import {VehiclesService} from "../vehicles/vehicles-service.service";
 import { AlertsComponent } from '../alerts/alerts.component';
 import {AlertsService} from "../alerts/alerts.service";
 import { AlertsHistoryComponent } from '../alerts-history/alerts-history.component';
+import {AlertsHistoryService} from "../alerts-history/alerts-history.service";
 
 
 const appRoutes: Routes = [
   {path: 'vehicles', component: VehiclesComponent},
   {path: 'alerts', component: AlertsComponent},
+  {path: 'alerthistory', component: AlertsHistoryComponent},
   {path: '', redirectTo: '/vehicles', pathMatch: 'full'}
   ];
 
@@ -31,7 +33,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [VehiclesService, AlertsComponent, AlertsService, VehiclesComponent],
+  providers: [VehiclesService, AlertsComponent, AlertsService, VehiclesComponent,AlertsHistoryComponent, AlertsHistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

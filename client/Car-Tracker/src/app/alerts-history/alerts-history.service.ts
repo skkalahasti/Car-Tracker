@@ -8,9 +8,9 @@ export class AlertsHistoryService {
   constructor(private http: Http) {
   }
 
-  findAlertsHistory(): Observable<any[]> {
+  findAlertsHistory(vinnumber): Observable<any[]> {
 
-    return this.http.get(`http://localhost:8080/api/alerts/priority/high/`)
+    return this.http.get(`http://localhost:8080/api/alerts/vin/${vinnumber}`)
       .map(response => response.json())
       .catch(error => Observable.throw(error.statusText));
 
