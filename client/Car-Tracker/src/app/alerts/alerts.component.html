@@ -1,3 +1,28 @@
-<p>
-  alerts works!
-</p>
+<div>
+<select [(ngModel)]="duration_time" class="form-control" (click)=getalerts()>
+  <option *ngFor="let dur of duration" [value]="duration_time">{{ dur }}</option>
+</select>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Vin</th>
+    <th>Type</th>
+    <th>priority</th>
+    <th>Time</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let alerts of highalerts">
+
+    <td>{{alerts.vin}}</td>
+    <td>{{alerts.type}}</td>
+    <td>{{alerts.priority}}</td>
+    <td>{{(alerts.timestamp) | date:'medium'}}</td>
+
+  </tr>
+  </tbody>
+</table>
+

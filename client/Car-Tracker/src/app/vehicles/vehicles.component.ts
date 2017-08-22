@@ -6,18 +6,15 @@ import {VehiclesService} from "./vehicles-service.service";
   templateUrl: './vehicles.component.html',
   styleUrls: ['./vehicles.component.css']
 })
-export class VehiclesComponent{
+export class VehiclesComponent implements OnInit{
 
   vehicles;
 
-  constructor(private vehiclesService: VehiclesService) {
+  constructor(private vehiclesService: VehiclesService) {}
 
+  ngOnInit(): void {
     this.vehicles = this.vehiclesService.showVehicles().subscribe(
       vehicles => this.vehicles = vehicles,
-      error => console.log(error)
-    );
-
+      error => console.log(error));
   }
-
-
 }
