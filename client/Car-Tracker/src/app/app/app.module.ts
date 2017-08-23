@@ -10,12 +10,19 @@ import { AlertsComponent } from '../alerts/alerts.component';
 import {AlertsService} from "../alerts/alerts.service";
 import { AlertsHistoryComponent } from '../alerts-history/alerts-history.component';
 import {AlertsHistoryService} from "../alerts-history/alerts-history.service";
+import { VehicleLocationComponent } from '../vehicle-location/vehicle-location.component';
+import {VehicleLocationService} from "../vehicle-location/vehicle-location-service.service";
+import { AgmCoreModule } from '@agm/core';
+import { SignalplotComponent } from '../signalplot/signalplot.component';
+import {ChartModule} from 'primeng/primeng';
 
 
 const appRoutes: Routes = [
   {path: 'vehicles', component: VehiclesComponent},
   {path: 'alerts', component: AlertsComponent},
   {path: 'alerthistory', component: AlertsHistoryComponent},
+  {path: 'locationhistory', component: VehicleLocationComponent},
+  {path: 'signalplot', component: SignalplotComponent},
   {path: '', redirectTo: '/vehicles', pathMatch: 'full'}
   ];
 
@@ -26,14 +33,21 @@ const appRoutes: Routes = [
     VehiclesComponent,
     AlertsComponent,
     AlertsHistoryComponent,
+    VehicleLocationComponent,
+    SignalplotComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    ChartModule,
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDsA8vswxtGr5Odrbtvg7hAIxhQTsyQHz0'
+    })
+
   ],
-  providers: [VehiclesService, AlertsComponent, AlertsService, VehiclesComponent,AlertsHistoryComponent, AlertsHistoryService],
+  providers: [VehiclesService, AlertsComponent, AlertsService, VehiclesComponent,AlertsHistoryComponent, AlertsHistoryService, VehicleLocationComponent,VehicleLocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

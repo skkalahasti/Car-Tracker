@@ -1,6 +1,9 @@
-<div>
+<div xmlns:orderBy="http://www.w3.org/1999/xhtml">
 <select #selectop class="form-control" (change)=getalerts(selectop.value)>
-  <option *ngFor="let dur of duration">{{ dur }}</option>
+  <option selected>Select a Duration</option>
+  <option *ngFor="let dur of duration" [value]="dur"  [selected]>
+{{dur}} hours
+  </option>
 </select>
 </div>
 
@@ -17,10 +20,11 @@
 
   <tr *ngFor="let alerts of highalerts">
 
+    <td>{{alerts.id}}</td>
     <td>{{alerts.vin}}</td>
     <td>{{alerts.type}}</td>
     <td>{{alerts.priority}}</td>
-    <td>{{(alerts.timestamp) | date:'medium'}}</td>
+    <td>{{(alerts.timestamp)| date:'medium'}}</td>
 
   </tr>
   </tbody>

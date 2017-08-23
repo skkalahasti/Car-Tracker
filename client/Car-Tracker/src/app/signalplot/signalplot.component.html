@@ -1,0 +1,17 @@
+<div>
+  <select #signaldrop class="form-control" (change)=setparameter(signaldrop.value)>
+    <option selected>Select Parameter</option>
+    <option [selected]>fuelVolume</option>
+    <option>engineRpm</option>
+  </select>
+</div>
+
+<div>
+  <select #timesignal class="form-control" (change)=settime(signaldrop.value)>
+    <option selected>Select a Duration</option>
+    <option value="0.25">15 Minutes</option>
+    <option value="0.5">30 Minutes</option>
+    <option value="1">1 Hour</option>
+    <option value="2">2 Hours</option>
+  </select>
+</div>

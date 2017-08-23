@@ -1,0 +1,9 @@
+
+<input #vin type="text" placeholder="Enter the vin number">
+<button type="submit" class="btn btn-primary" (click)=getlocationhistory(vin.value)>Get Location History</button>
+
+<agm-map [latitude]="41.881832" [longitude]="-87.623177">
+  <agm-marker *ngFor="let loc of vehiclelocationhis" [latitude]="loc.latitude" [longitude]="loc.longitude">
+  </agm-marker>
+</agm-map>
+
