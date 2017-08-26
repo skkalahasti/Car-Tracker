@@ -11,21 +11,15 @@
   <thead>
   <tr>
     <th>Vin</th>
-    <th>Type</th>
-    <th>priority</th>
-    <th>Time</th>
+    <th>No. of High Alerts</th>
   </tr>
   </thead>
   <tbody>
 
   <tr *ngFor="let alerts of highalerts">
 
-    <td>{{alerts.id}}</td>
-    <td>{{alerts.vin}}</td>
-    <td>{{alerts.type}}</td>
-    <td>{{alerts.priority}}</td>
-    <td>{{(alerts.timestamp)| date:'medium'}}</td>
-
+    <td><a [routerLink]="['/alerthistory', alerts.vin,selectop.value]">{{alerts.vin}}</a></td>
+    <td>{{alerts.cnt}}</td>
   </tr>
   </tbody>
 </table>

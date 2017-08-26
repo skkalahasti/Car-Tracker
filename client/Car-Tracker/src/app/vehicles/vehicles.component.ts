@@ -16,5 +16,6 @@ export class VehiclesComponent implements OnInit{
     this.vehicles = this.vehiclesService.showVehicles().subscribe(
       vehicles => this.vehicles = vehicles,
       error => console.log(error));
+
   }
 }

@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
-import { HttpModule } from "@angular/http";
+import {Http, HttpModule} from "@angular/http";
 import { RouterModule, Routes } from "@angular/router";
 import { VehiclesComponent } from '../vehicles/vehicles.component';
 import {VehiclesService} from "../vehicles/vehicles-service.service";
@@ -14,13 +14,17 @@ import { VehicleLocationComponent } from '../vehicle-location/vehicle-location.c
 import {VehicleLocationService} from "../vehicle-location/vehicle-location-service.service";
 import { AgmCoreModule } from '@agm/core';
 import { SignalplotComponent } from '../signalplot/signalplot.component';
-import {ChartModule} from 'primeng/primeng';
-
+import {SignalPlotService} from "../signalplot/signal-plot.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { ChartModule } from 'angular2-chartjs';
+import { AlertHistoryAllComponent } from '../alert-history-all/alert-history-all.component';
+import {AlertHistoyAllService} from '../alert-history-all/alert-histoy-all.service'
 
 const appRoutes: Routes = [
   {path: 'vehicles', component: VehiclesComponent},
   {path: 'alerts', component: AlertsComponent},
-  {path: 'alerthistory', component: AlertsHistoryComponent},
+  {path: 'alerthistory', component: AlertHistoryAllComponent},
+  {path: 'alerthistory/:id/:time', component: AlertsHistoryComponent},
   {path: 'locationhistory', component: VehicleLocationComponent},
   {path: 'signalplot', component: SignalplotComponent},
   {path: '', redirectTo: '/vehicles', pathMatch: 'full'}
@@ -35,10 +39,12 @@ const appRoutes: Routes = [
     AlertsHistoryComponent,
     VehicleLocationComponent,
     SignalplotComponent,
+    AlertHistoryAllComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     HttpModule,
     ChartModule,
     RouterModule.forRoot(appRoutes),
@@ -47,7 +53,7 @@ const appRoutes: Routes = [
     })
 
   ],
-  providers: [VehiclesService, AlertsComponent, AlertsService, VehiclesComponent,AlertsHistoryComponent, AlertsHistoryService, VehicleLocationComponent,VehicleLocationService],
+  providers: [VehiclesService, AlertsComponent, AlertsService, VehiclesComponent,AlertsHistoryComponent, AlertsHistoryService, VehicleLocationComponent,VehicleLocationService, SignalplotComponent, SignalPlotService,AlertHistoryAllComponent, AlertHistoyAllService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

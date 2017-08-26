@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertsHistoryService} from "./alerts-history.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-alerts-history',
@@ -10,20 +11,16 @@ export class AlertsHistoryComponent implements OnInit {
 
   alertshistory
 
-  constructor(private alertsHistoryService: AlertsHistoryService) { }
+  constructor(private route:ActivatedRoute, private alertsHistoryService: AlertsHistoryService) { }
 
   ngOnInit() {
 
-    this.gethistoricalalerts(this.alertshistory);
+    this.route.params.subscribe(params =>{
+      this.alertsHistoryService.findAlertsHistory(params.id,params.time).subscribe(
+        alerts => this.alertshistory = alerts);
 
-  }
-
-  gethistoricalalerts(vinnumber){
-
-    this.alertshistory = this.alertsHistoryService.findAlertsHistory(vinnumber).subscribe(
-      alerts => this.alertshistory = alerts,
-      error => console.log(error));
-
+    });
   }
 
 }
+

@@ -1,5 +1,7 @@
+<script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
 <div>
-  <select #signaldrop class="form-control" (change)=setparameter(signaldrop.value)>
+  <select #signaldrop class="form-control" (change)=this.chartadd()>
     <option selected>Select Parameter</option>
     <option [selected]>fuelVolume</option>
     <option>engineRpm</option>
@@ -7,7 +9,7 @@
 </div>
 
 <div>
-  <select #timesignal class="form-control" (change)=settime(signaldrop.value)>
+  <select #timesignal class="form-control" >
     <option selected>Select a Duration</option>
     <option value="0.25">15 Minutes</option>
     <option value="0.5">30 Minutes</option>
@@ -15,3 +17,10 @@
     <option value="2">2 Hours</option>
   </select>
 </div>
+
+<div id="charttype">
+</div>
+
+<!--
+<chart [type]="type" [data]="this.data" [options]="options"></chart>
+-->
