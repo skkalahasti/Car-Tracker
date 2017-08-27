@@ -1,14 +1,16 @@
 <script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
 
-<div>
-  <select #signaldrop class="form-control" (change)=this.chartadd()>
+<input #vin type="text" placeholder="Enter the vin number">
+<button type="submit" class="btn btn-primary" (click)=getreadings(vin.value,timesignal.value,signaldrop.value)>Get Details</button>
+<br><br>
+
+<div id="signals">
+  <select #signaldrop class="form-control">
     <option selected>Select Parameter</option>
-    <option [selected]>fuelVolume</option>
+    <option>fuelVolume</option>
     <option>engineRpm</option>
   </select>
-</div>
-
-<div>
+<br>
   <select #timesignal class="form-control" >
     <option selected>Select a Duration</option>
     <option value="0.25">15 Minutes</option>
@@ -16,11 +18,11 @@
     <option value="1">1 Hour</option>
     <option value="2">2 Hours</option>
   </select>
+
 </div>
 
 <div id="charttype">
 </div>
 
-<!--
-<chart [type]="type" [data]="this.data" [options]="options"></chart>
--->
+
+<chart *ngIf="this.mark" [type]="type" [data]="this.data" [options]="options" ontimeupdate="true"></chart>
