@@ -1,0 +1,31 @@
+<div xmlns:orderBy="http://www.w3.org/1999/xhtml">
+<select #selectop class="form-control" (change)=getalerts(selectop.value)>
+  <option selected>Select a Duration</option>
+  <option [value]=1 >1 Hour</option>
+  <option [value]=2 >2 Hours</option>
+  <option [value]=4 >4 Hours</option>
+  <option [value]=9 >8 Hours</option>
+  <option [value]=12 >12 Hours</option>
+  <option [value]=24 >24 Hours</option>
+
+
+</select>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Vin</th>
+    <th>No. of High Alerts</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let alerts of highalerts">
+
+    <td><a [routerLink]="['/alerthistory', alerts.vin,selectop.value]">{{alerts.vin}}</a></td>
+    <td>{{alerts.cnt}}</td>
+  </tr>
+  </tbody>
+</table>
+
