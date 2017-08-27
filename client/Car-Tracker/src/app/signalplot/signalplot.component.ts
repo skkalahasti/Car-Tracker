@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SignalPlotService} from "./signal-plot.service";
 import {HttpClient} from "@angular/common/http";
-import * as moment from "moment";
 
 
 @Component({

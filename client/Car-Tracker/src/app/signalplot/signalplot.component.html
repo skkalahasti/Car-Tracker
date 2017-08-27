@@ -7,8 +7,8 @@
 <div id="signals">
   <select #signaldrop class="form-control">
     <option selected>Select Parameter</option>
-    <option>fuelVolume</option>
-    <option>engineRpm</option>
+    <option value="fuelVolume">Fuel Volume</option>
+    <option value="engineRpm">Engine Rpm</option>
   </select>
 <br>
   <select #timesignal class="form-control" >
@@ -21,8 +21,7 @@
 
 </div>
 
-<div id="charttype">
-</div>
 
-
+<div id="chart">
 <chart *ngIf="this.mark" [type]="type" [data]="this.data" [options]="options" ontimeupdate="true"></chart>
+</div>

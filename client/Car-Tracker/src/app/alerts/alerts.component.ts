@@ -6,20 +6,13 @@ import {AlertsService} from "./alerts.service";
   templateUrl: './alerts.component.html',
   styleUrls: ['./alerts.component.css']
 })
-export class AlertsComponent implements OnInit {
+export class AlertsComponent {
 
 
   highalerts;
-  duration_time;
   duration;
 
   constructor(public alertService: AlertsService) { }
-
-  ngOnInit(): void {
-
-    this.duration=[1,2,4,12,24];
-
-  }
 
   getalerts(dur_time){
 
