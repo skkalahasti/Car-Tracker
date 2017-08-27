@@ -10,6 +10,9 @@ import java.util.UUID;
         @NamedQuery(name = "Alert.findByPriority",query = "SELECT alert FROM Alert alert WHERE alert.priority=:parampriority"),
         @NamedQuery(name = "Alert.findByVin",query = "SELECT alert FROM Alert alert WHERE alert.vin=:paramvin"),
 })
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "Alert.findByPriorityandtime", query="SELECT alert FROM Alert alert WHERE (alert.priority=:parampriority AND DATE_ADD(alert.timestamp, INTERVAL u:paramtime HOUR) >= now())")
+})
 public class Alert {
 
     @Id

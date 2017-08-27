@@ -2,13 +2,14 @@ package uc.cs.repository;
 
 import org.springframework.stereotype.Repository;
 import uc.cs.entity.Alert;
+import uc.cs.entity.AlertCount;
 import uc.cs.entity.Readings;
 import uc.cs.entity.Vehicles;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import uc.cs.Email.ComposeEmail;
 
 @Repository
 public class AlertRepositoryImpl implements AlertRepository {
@@ -19,6 +20,27 @@ public class AlertRepositoryImpl implements AlertRepository {
     public List<Alert> findAll() {
         TypedQuery<Alert> query=entityManager.createNamedQuery("Alert.findAll",Alert.class);
         return query.getResultList();
+
+    }
+
+    public List<Object> findvincount() {
+
+        String qlString = "SELECT count (a.vin), a.vin FROM Alert a where a.priority='HIGH' GROUP BY a.vin";
+        Query q = entityManager.createQuery(qlString);
+        List<Object> results = (List<Object>) q.getResultList();
+
+        return results;
+
+    }
+
+
+
+    public List<AlertCount> findvincount(String time) {
+
+        String qlString = "SELECT a.vin, count(a.vin) AS cnt FROM alert a WHERE (a.priority='HIGH' AND DATE_ADD(a.timestamp, INTERVAL "+time +" HOUR) >= now()) GROUP BY a.vin ORDER BY cnt DESC";
+        Query query=entityManager.createNativeQuery(qlString,AlertCount.class);
+
+        return (List<AlertCount>) query.getResultList();
 
     }
 
@@ -37,6 +59,19 @@ public class AlertRepositoryImpl implements AlertRepository {
 
     }
 
+    public List<Alert> findByPriorityandtime(String priority, String time) {
+
+        String quer="SELECT * FROM alert a WHERE (a.priority='"+priority+"'AND DATE_ADD(a.timestamp, INTERVAL "+time +" HOUR) >= now())";
+
+        System.out.println(quer);
+
+        Query query = entityManager.createNativeQuery(quer,Alert.class);
+
+        List<Alert> resultList=(List<Alert>)query.getResultList();
+
+            return resultList;
+
+    }
     public List<Alert> findByVin(String vin) {
         TypedQuery<Alert> query = entityManager.createNamedQuery("Alert.findByVin",Alert.class);
 
@@ -49,6 +84,15 @@ public class AlertRepositoryImpl implements AlertRepository {
             return null;
         }
     }
+
+    public List<Alert> findByVin(String vin, String time) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM alert a WHERE (a.vin='"+vin+"'AND a.priority='HIGH' AND DATE_ADD(a.timestamp, INTERVAL "+time +" HOUR) >= now())",Alert.class);
+
+        List<Alert> resultList = (List<Alert>)query.getResultList();
+
+            return resultList;
+    }
+
 
     public void checkForAlerts(Readings readings){
 
@@ -109,4 +153,6 @@ public class AlertRepositoryImpl implements AlertRepository {
         }
 
     }
+
+
 }

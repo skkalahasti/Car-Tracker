@@ -8,6 +8,10 @@ public interface ReadingsService {
 
     List<Readings> findAll();
 
+    List<Readings> findByVinandTime(String vin, String time);
+
+    List<Readings> findByVin(String vin);
+
     Readings createReadings(Readings readings);
 
 }

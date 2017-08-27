@@ -7,6 +7,7 @@ import java.util.UUID;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Readings.findAll",query = "SELECT readings FROM Readings readings"),
+        @NamedQuery(name = "Readings.findByVin",query = "SELECT readings FROM Readings readings where readings.vin=:paramvin")
 })
 public class Readings {
 

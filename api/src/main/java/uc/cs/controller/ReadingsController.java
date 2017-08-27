@@ -7,7 +7,7 @@ import uc.cs.service.ReadingsService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://mocker.egen.io",maxAge = 3600)
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RequestMapping(value = "/readings")
 public class ReadingsController {
 
@@ -18,6 +18,17 @@ public class ReadingsController {
     public List<Readings> findAll() {
         return service.findAll();
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{vin}")
+    public List<Readings> findByVin(@PathVariable String vin) {
+        return service.findByVin(vin);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{vin}/{time}")
+    public List<Readings> findByVinandTime(@PathVariable String vin, @PathVariable String time) {
+        return service.findByVinandTime(vin, time);
+    }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public Readings create(@RequestBody Readings readings)

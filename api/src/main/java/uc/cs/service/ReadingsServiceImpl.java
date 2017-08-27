@@ -19,6 +19,14 @@ public class ReadingsServiceImpl implements ReadingsService {
         return rrepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public List<Readings> findByVinandTime(String vin, String time){ return rrepository.findByVinandTime(vin, time); }
+
+    @Transactional(readOnly = true)
+    public List<Readings> findByVin(String vin) {
+        return rrepository.findByVin(vin);
+    }
+
     @Transactional
     public Readings createReadings(Readings readings) {
 

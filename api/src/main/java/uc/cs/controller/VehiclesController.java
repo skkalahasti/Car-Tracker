@@ -7,7 +7,7 @@ import uc.cs.service.VehiclesService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://mocker.egen.io",maxAge = 3600)
+@CrossOrigin(origins = {"*"},maxAge = 3600)
 @RequestMapping(value = "/vehicles")
 public class VehiclesController {
 
@@ -28,6 +28,8 @@ public class VehiclesController {
     public List<Vehicles> create(@RequestBody List<Vehicles> vehicles) {
         return service.createVehicles(vehicles);
     }
+
+
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
     public Vehicles delete(@PathVariable("vin") String vin){ return service.delete(vin); }
